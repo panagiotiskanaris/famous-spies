@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: main_application
+        ports:
+            - "8000:80"
+        volumes:
+            - .:/var/www/html
+        depends_on:
+            - db
+            - redis
+    db:
+        image: mysql:8.0
+        container_name: mysql_db
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: famous_spies_assignment_db
+        volumes:
+            - db_data:/var/lib/mysql
+    redis:
+        image: redis:7
+        container_name: redis_cache
+        ports:
+            - "6379:6379"
+volumes:
+    db_data:
