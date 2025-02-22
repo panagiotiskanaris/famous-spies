@@ -8,6 +8,6 @@ class CreateSpyAction
 {
     public function handle(array $spyData): Spy
     {
-        return Spy::create($spyData);
+        return Spy::query()->create($spyData);
     }
 }

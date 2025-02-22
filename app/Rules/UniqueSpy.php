@@ -12,7 +12,8 @@ class UniqueSpy implements ValidationRule
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $agencyExists = Spy::where('name', $value)
+        $agencyExists = Spy::query()
+            ->where('name', $value)
             ->where('surname', $this->surname)
             ->where('agency_id', $this->agencyId)
             ->exists();

@@ -16,7 +16,7 @@ class LoginController extends Controller
     {
         $validated = $request->validated();
 
-        $user = User::where('email', $validated['email'])->first();
+        $user = User::query()->where('email', $validated['email'])->first();
 
         abort_if(
             ! $user || ! Hash::check($validated['password'], $user->password),

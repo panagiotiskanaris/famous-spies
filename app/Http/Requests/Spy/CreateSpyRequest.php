@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+declare(strict_types=1);
+
+namespace App\Http\Requests\Spy;
 
 use App\Rules\UniqueSpy;
 use Illuminate\Foundation\Http\FormRequest;

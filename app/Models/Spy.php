@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Spy extends Model
 {
-    use HasFactory;
+    use Filterable, HasFactory;
 
     protected $guarded = ['id'];
 
@@ -23,5 +24,10 @@ class Spy extends Model
     public function agency(): BelongsTo
     {
         return $this->belongsTo(Agency::class);
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        return $this->name.' '.$this->surname;
     }
 }
