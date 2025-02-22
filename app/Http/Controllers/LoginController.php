@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Resources\LoginResource;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
@@ -25,7 +27,7 @@ class LoginController extends Controller
         $token = $user->createToken('API Token')->plainTextToken;
 
         return LoginResource::make([
-            'token' => $token
+            'token' => $token,
         ]);
     }
 }
