@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Authentication;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Resources\LoginResource;
 use App\Models\User;
@@ -24,7 +25,7 @@ class LoginController extends Controller
             'Invalid credentials.'
         );
 
-        $token = $user->createToken('API Token')->plainTextToken;
+        $token = $user->createToken(name: 'API Token', expiresAt: now()->addWeek())->plainTextToken;
 
         return LoginResource::make([
             'token' => $token,
