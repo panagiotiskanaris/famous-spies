@@ -54,9 +54,9 @@ class SpyRequest extends FormRequest
 
         $unsupportedFilters = array_diff(array_keys($this->all()), $allowedFilters);
 
-        if (!empty($unsupportedFilters)) {
+        if (! empty($unsupportedFilters)) {
             throw ValidationException::withMessages([
-                'unsupported_filters' => 'The following filters are not supported: ' . implode(', ', $unsupportedFilters),
+                'unsupported_filters' => 'The following filters are not supported: '.implode(', ', $unsupportedFilters),
             ]);
         }
     }

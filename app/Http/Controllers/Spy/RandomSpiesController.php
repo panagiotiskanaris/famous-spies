@@ -13,7 +13,7 @@ class RandomSpiesController extends Controller
 {
     public function __invoke(): AnonymousResourceCollection
     {
-        $randomSpies = Spy::query()->inRandomOrder()->take(5)->get();
+        $randomSpies = Spy::query()->inRandomOrder()->take(5)->with('agency')->get();
 
         return SpyResource::collection($randomSpies);
     }

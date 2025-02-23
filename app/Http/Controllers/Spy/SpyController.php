@@ -21,6 +21,7 @@ class SpyController extends Controller
 
         $spies = Spy::query()
             ->filter($filters)
+            ->with('agency')
             ->paginate($validated['perPage'] ?? 15);
 
         return SpyResource::collection($spies);
