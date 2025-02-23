@@ -14,6 +14,7 @@ use App\Http\Resources\Spy\SpyResource;
 use App\Models\Spy;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
 class SpyController extends Controller
@@ -41,6 +42,12 @@ class SpyController extends Controller
 
     public function destroy(Spy $spy, DeleteSpyAction $action): JsonResponse
     {
+        abort_if(
+            $spy->agency()->exists(),
+            Response::HTTP_UNAUTHORIZED,
+            'The requested spy is associated with agency.'
+        );
+
         $action->handle($spy);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
