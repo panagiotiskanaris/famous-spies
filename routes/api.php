@@ -13,7 +13,7 @@ Route::middleware('auth:sanctum')
     ->group(function () {
         Route::post('logout', LogoutController::class);
 
-        Route::resource('spies', SpyController::class)->only(['index', 'store']);
+        Route::resource('spies', SpyController::class)->only(['index', 'store', 'destroy']);
 
         Route::get('random-spies', RandomSpiesController::class)->middleware('throttle:10,1');
 
