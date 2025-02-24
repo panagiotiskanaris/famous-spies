@@ -2,7 +2,6 @@
 
 namespace App\Events;
 
-use App\Models\Agency;
 use App\Models\Spy;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;

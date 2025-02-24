@@ -14,7 +14,6 @@ use App\Http\Resources\Spy\SpyResource;
 use App\Models\Spy;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
 class SpyController extends Controller

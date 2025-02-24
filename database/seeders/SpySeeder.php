@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Spy;
 use Illuminate\Database\Seeder;
 
 class SpySeeder extends Seeder
@@ -11,6 +12,6 @@ class SpySeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Spy::factory(2)->create();
     }
 }

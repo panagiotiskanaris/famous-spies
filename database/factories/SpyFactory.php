@@ -20,6 +20,8 @@ class SpyFactory extends Factory
         return [
             'name' => fake()->name(),
             'surname' => fake()->name(),
+            'country_of_operation' => fake()->country(),
+            'date_of_birth' => fake()->dateTimeBetween('-45 year'),
         ];
     }
 }

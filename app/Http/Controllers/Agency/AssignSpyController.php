@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Agency;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Agency\AgencyResource;
-use App\Http\Resources\Spy\SpyResource;
 use App\Models\Agency;
 use App\Models\Spy;
 use App\Services\AgencyService;
