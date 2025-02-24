@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Spy;
 
-use App\Actions\Spies\CreateSpyAction;
-use App\Actions\Spies\DeleteSpyAction;
+use App\Actions\Spy\CreateSpyAction;
+use App\Actions\Spy\DeleteSpyAction;
 use App\Filters\SpyFilters;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Spy\CreateSpyRequest;
@@ -41,12 +41,6 @@ class SpyController extends Controller
 
     public function destroy(Spy $spy, DeleteSpyAction $action): JsonResponse
     {
-        abort_if(
-            $spy->agency()->exists(),
-            Response::HTTP_UNAUTHORIZED,
-            'The requested spy is associated with agency.'
-        );
-
         $action->handle($spy);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);

@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Actions\Spies;
+declare(strict_types=1);
+
+namespace App\Actions\Spy;
 
 use App\Models\Spy;
 
