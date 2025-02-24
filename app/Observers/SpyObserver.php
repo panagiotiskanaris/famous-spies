@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Events\SpyTransferred;
-use App\Models\Agency;
 use App\Models\Spy;
 use Illuminate\Support\Facades\Log;
 
