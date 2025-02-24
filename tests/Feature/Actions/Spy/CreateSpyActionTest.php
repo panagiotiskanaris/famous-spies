@@ -7,7 +7,7 @@ beforeEach(function () {
     $this->action = new CreateSpyAction;
 });
 
-test('Creates a spy with valid data', function () {
+test('Creates a spy with valid data.', function () {
     $spyData = Spy::factory()->make([
         'name' => 'James',
         'surname' => 'Bond',
