@@ -17,16 +17,16 @@ class SpyFilters extends QueryFilters
 
     public function countryOfOperation(?string $countryOfOperation = null): Builder
     {
-        if ($countryOfOperation) {
-            return $this->builder->where('country_of_operation', 'like', '%'.$countryOfOperation.'%');
+        if (is_null($countryOfOperation)) {
+            return $this->builder;
         }
 
-        return $this->builder;
+        return $this->builder->where('country_of_operation', 'like', '%'.$countryOfOperation.'%');
     }
 
     public function agency(?string $agency = null): Builder
     {
-        if (! $agency) {
+        if (is_null($agency)) {
             return $this->builder;
         }
 
@@ -37,7 +37,7 @@ class SpyFilters extends QueryFilters
 
     public function name(?string $name = null): Builder
     {
-        if (! $name) {
+        if (is_null($name)) {
             return $this->builder;
         }
 
@@ -47,7 +47,7 @@ class SpyFilters extends QueryFilters
 
     public function age(?array $age = null): Builder
     {
-        if (! $age) {
+        if (is_null($age)) {
             return $this->builder;
         }
 
