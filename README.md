@@ -69,16 +69,19 @@ Follow these steps to set up and run the project:
 
     > http://localhost:8000
 
-## Architecture
+## Code Architecture
 
-    The /app directory contains the core business logic of the application. It is further divided into subdirectories:
-    
-    Actions: Contains action classes tha handle the create, update and delete of entities. This is the source of truth for an entity action.
-    
-    Events: Contains event classes, such as SpyTransferred.php, which are used to trigger specific actions in the application.
-    
-    Http: Contains controllers, form requests, and resources for handling HTTP requests and responses.
-    
-    Models: Contains Eloquent models that represent database tables and handle data interactions.
-    
-    Services: Contains service classes for encapsulating reusable business logic.
+- The /app directory contains the core business logic of the application. It is further divided into subdirectories:
+
+- Actions: Contains action classes tha handle the create, update and delete of entities. This is the source of truth for an entity action.
+
+- Events: Contains event classes, such as SpyTransferred, which are used to trigger specific actions in the application.
+
+- Http: Contains controllers, form requests, and resources for handling HTTP requests and responses.
+  - Only Resource Controllers and Invokable Controllers.
+
+- Models: Contains Eloquent models that represent database tables and handle data interactions.
+
+- Filters: Contains Filter classes based on each model separately.
+
+- Services: Contains service classes for encapsulating reusable business logic.
