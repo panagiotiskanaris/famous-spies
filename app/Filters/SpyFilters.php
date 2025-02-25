@@ -17,27 +17,40 @@ class SpyFilters extends QueryFilters
 
     public function countryOfOperation(?string $countryOfOperation = null): Builder
     {
-        return $this->builder->where('country_of_operation', 'like', '%'.$countryOfOperation.'%');
+        if ($countryOfOperation) {
+            return $this->builder->where('country_of_operation', 'like', '%'.$countryOfOperation.'%');
+        }
+
+        return $this->builder;
     }
 
     public function agency(?string $agency = null): Builder
     {
-        return $this->builder
-            ->when($agency, function ($query, $agency) {
-                $query->whereHas('agency', function ($q) use ($agency) {
-                    $q->where('name', 'like', '%'.$agency.'%');
-                });
-            });
+        if (! $agency) {
+            return $this->builder;
+        }
+
+        return $this->builder->whereHas('agency', function ($q) use ($agency) {
+            $q->where('name', 'like', '%'.$agency.'%');
+        });
     }
 
     public function name(?string $name = null): Builder
     {
+        if (! $name) {
+            return $this->builder;
+        }
+
         return $this->builder->where('name', 'like', '%'.$name.'%')
             ->orWhere('surname', 'like', '%'.$name.'%');
     }
 
     public function age(?array $age = null): Builder
     {
+        if (! $age) {
+            return $this->builder;
+        }
+
         $today = now();
 
         if (count($age) === 2) {
