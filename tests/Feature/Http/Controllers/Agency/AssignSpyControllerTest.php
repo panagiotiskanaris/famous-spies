@@ -3,7 +3,6 @@
 use App\Models\Agency;
 use App\Models\Spy;
 use App\Models\User;
-use App\Services\AgencyService;
 
 test('The non authenticated user cannot assign a spy to an agency.', function () {
     $agency = Agency::factory()->create();

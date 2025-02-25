@@ -16,6 +16,7 @@ class CreateSpyRequest extends FormRequest
             'date_of_birth' => ['required', 'date'],
             'date_of_death' => ['nullable', 'date'],
             'agency_id' => ['nullable', 'exists:agencies,id'],
+            'country_of_operation' => ['nullable', 'string', 'min:2', 'max:255'],
             'name' => ['bail', 'required', 'string', 'min:2', 'max:255', new UniqueSpy($this->surname, $this->agency_id)],
         ];
     }
