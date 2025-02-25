@@ -13,10 +13,20 @@ class SpySeeder extends Seeder
      */
     public function run(): void
     {
-        $agency = Agency::query()->first();
+        $agencies = Agency::query()->select(['id', 'name'])->get();
 
-        Spy::factory(2)->create([
-            'agency_id' => $agency->id,
-        ]);
+        Spy::factory(2)
+            ->sequence([
+                'name' => 'James',
+                'surname' => 'Bond',
+                'country_of_operation' => 'USA',
+                'agency_id' => $agencies->where('name', 'CIA')->first()->id,
+            ], [
+                'name' => 'Panos',
+                'surname' => 'K.',
+                'country_of_operation' => 'Greece',
+                'agency_id' => $agencies->where('name', 'LAPD')->first()->id,
+            ])
+            ->create();
     }
 }

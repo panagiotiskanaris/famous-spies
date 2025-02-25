@@ -12,15 +12,11 @@ class AgencySeeder extends Seeder
      */
     public function run(): void
     {
-        Agency::factory(4)
+        Agency::factory(2)
             ->sequence([
-                'name' => 'Agency A',
+                'name' => 'CIA',
             ], [
-                'name' => 'Agency B',
-            ], [
-                'name' => 'Agency C',
-            ], [
-                'name' => 'Agency D',
+                'name' => 'LAPD',
             ])
             ->create();
     }
