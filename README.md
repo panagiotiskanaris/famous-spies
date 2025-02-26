@@ -10,6 +10,8 @@ It includes database migrations and seeders for initializing the database with s
 
 The application is designed to be easily set up and run in a local development environment.
 
+This is a Token Based API application that uses Sanctum for Authentication.
+
 ---
 
 ## Features
