@@ -13,6 +13,7 @@ use App\Http\Requests\Spy\CreateSpyRequest;
 use App\Http\Requests\Spy\SpyRequest;
 use App\Http\Resources\Spy\SpyResource;
 use App\Models\Spy;
+use App\Services\SpyService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,14 +21,11 @@ use Throwable;
 
 class SpyController extends Controller
 {
-    public function index(SpyRequest $request, SpyFilters $filters): AnonymousResourceCollection
+    public function index(SpyRequest $request, SpyFilters $filters, SpyService $service): AnonymousResourceCollection
     {
         $validated = $request->validated();
 
-        $spies = Spy::query()
-            ->filter($filters)
-            ->with('agency')
-            ->paginate($validated['perPage'] ?? 15);
+        $spies = $service->getSpies($filters, $validated['perPage'] ?? 15);
 
         return SpyResource::collection($spies);
     }

@@ -6,14 +6,14 @@ namespace App\Http\Controllers\Spy;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Spy\SpyResource;
-use App\Models\Spy;
+use App\Services\SpyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class RandomSpiesController extends Controller
 {
-    public function __invoke(): AnonymousResourceCollection
+    public function __invoke(SpyService $service): AnonymousResourceCollection
     {
-        $randomSpies = Spy::query()->inRandomOrder()->take(5)->with('agency')->get();
+        $randomSpies = $service->getRandomSpies();
 
         return SpyResource::collection($randomSpies);
     }
