@@ -99,3 +99,5 @@ Follow these steps to set up and run the project:
 - Spy Update Endpoint
 
 - More Tests for the ordering in the Spy Index Endpoint.
+
+- Add CSRF Protection, it's important for SPA Apps
