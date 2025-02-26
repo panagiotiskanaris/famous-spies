@@ -92,3 +92,32 @@ test('Orders spies by full name.', function () {
             ->where('data.1.full_name', 'James Bond')
         );
 });
+test('Orders spies by date_of_death in ascending order with nulls last.', function () {
+    Spy::factory()->create(['name' => 'James', 'surname' => 'Bond', 'date_of_death' => '2025-01-01']);
+    Spy::factory()->create(['name' => 'Ethan', 'surname' => 'Hunt', 'date_of_death' => null]);
+    Spy::factory()->create(['name' => 'Jason', 'surname' => 'Bourne', 'date_of_death' => '2024-12-01']);
+
+    $response = $this->getJson(route('spies.index', ['order' => [['date_of_death', 'asc']]]));
+
+    $response->assertOk()
+        ->assertJson(fn (AssertableJson $json) => $json->has('data', 3)
+            ->has('meta')
+            ->has('links')
+            ->where('data.2.date_of_death', null)
+        );
+});
+
+test('Orders spies by date_of_death in descending order with nulls last.', function () {
+    Spy::factory()->create(['name' => 'James', 'surname' => 'Bond', 'date_of_death' => '2025-01-01']);
+    Spy::factory()->create(['name' => 'Ethan', 'surname' => 'Hunt', 'date_of_death' => null]);
+    Spy::factory()->create(['name' => 'Jason', 'surname' => 'Bourne', 'date_of_death' => '2024-12-01']);
+
+    $response = $this->getJson(route('spies.index', ['order' => [['date_of_death', 'desc']]]));
+
+    $response->assertOk()
+        ->assertJson(fn (AssertableJson $json) => $json->has('data', 3)
+            ->has('meta')
+            ->has('links')
+            ->where('data.2.date_of_death', null)
+        );
+});
