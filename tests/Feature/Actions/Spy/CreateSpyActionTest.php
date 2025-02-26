@@ -1,6 +1,7 @@
 <?php
 
 use App\Actions\Spy\CreateSpyAction;
+use App\Models\Agency;
 use App\Models\Spy;
 
 beforeEach(function () {
@@ -26,3 +27,21 @@ test('Creates a spy with valid data.', function () {
         'surname' => 'Bond',
     ]);
 });
+
+test('Throw DB Error for combination of name, surname and agency_id already exists.', function () {
+    $agency = Agency::factory()->create();
+
+    Spy::factory()->create([
+        'name' => 'James',
+        'surname' => 'Bond',
+        'agency_id' => $agency->id,
+    ]);
+
+    $spyData = Spy::factory()->make([
+        'name' => 'James',
+        'surname' => 'Bond',
+        'agency_id' => $agency->id,
+    ])->toArray();
+
+    $this->action->handle($spyData);
+})->throws(PDOException::class);
