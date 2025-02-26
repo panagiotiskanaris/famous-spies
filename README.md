@@ -69,6 +69,15 @@ Follow these steps to set up and run the project:
 
     > http://localhost:8000
 
+### 7. Use Application
+    The application is API based.
+    
+    The first step is to use the default user (Admin) in the system to login.
+    In order to use the APIs you need to use the Token from the Login response.
+    Put the token at the root of the folder of Postman and all the APIs will inherit the Token.
+
+    Now you can use the APIs with the Bearer token, enjoy!
+
 ## Code Architecture
 
 - The /app directory contains the core business logic of the application. It is further divided into subdirectories:
