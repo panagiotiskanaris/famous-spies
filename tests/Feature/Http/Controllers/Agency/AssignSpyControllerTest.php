@@ -1,8 +1,10 @@
 <?php
 
+use App\Events\SpyTransferred;
 use App\Models\Agency;
 use App\Models\Spy;
 use App\Models\User;
+use Illuminate\Support\Facades\Event;
 
 test('The non authenticated user cannot assign a spy to an agency.', function () {
     $agency = Agency::factory()->create();
@@ -14,6 +16,8 @@ test('The non authenticated user cannot assign a spy to an agency.', function ()
 });
 
 test('Assigns a spy to an agency when the user authenticated.', function () {
+    Event::fake(SpyTransferred::class);
+
     $user = User::factory()->create();
     $agency = Agency::factory()->create();
     $spy = Spy::factory()->create();
@@ -35,4 +39,6 @@ test('Assigns a spy to an agency when the user authenticated.', function () {
             ],
         ],
     ]);
+
+    Event::assertDispatched(SpyTransferred::class);
 });
