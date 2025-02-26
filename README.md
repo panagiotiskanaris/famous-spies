@@ -85,3 +85,17 @@ Follow these steps to set up and run the project:
 - Filters: Contains Filter classes based on each model separately.
 
 - Services: Contains service classes for encapsulating reusable business logic.
+
+## TODO
+
+- Authentication: Use refresh token with specific expiration to fetch a new token.
+
+- Add the Notification feature by using a service like Pusher.
+
+- Create a new endpoint to assign a Spy to an existing Mission.
+
+- Missions CRUD
+
+- Spy Update Endpoint
+
+- More Tests for the ordering in the Spy Index Endpoint.
