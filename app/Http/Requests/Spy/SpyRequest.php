@@ -14,6 +14,7 @@ class SpyRequest extends FormRequest
     {
         return [
             'perPage' => ['nullable', 'integer', 'min:5', 'max:100'],
+            'page' => ['nullable', 'integer', 'min:1'],
 
             'name' => ['nullable', 'string', 'min:2', 'max:255'],
 
@@ -39,6 +40,7 @@ class SpyRequest extends FormRequest
     {
         $allowedFilters = [
             'perPage',
+            'page',
             'name',
             'agency',
             'countryOfOperation',
